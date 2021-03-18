@@ -1,0 +1,32 @@
+import { Map, MercatorCoordinate, CameraOptions } from "mapbox-gl";
+import { Scene, Object3D, Vector3, Euler } from "three";
+export declare class ThreeJsCustomLayer {
+    id: string;
+    type: "custom";
+    renderingMode: "3d";
+    private _camera;
+    private _cameraTransform;
+    private _world;
+    private _scene;
+    private _renderer?;
+    private _factor;
+    private _map?;
+    get scene(): Scene;
+    constructor(id?: string, factor?: number);
+    onAdd(map: Map, gl: WebGL2RenderingContext): void;
+    render(gl: WebGLRenderingContext, matrix: number[]): void;
+    addObject3D(obj: Object3D, coords?: MercatorCoordinate): void;
+    removeObject3D(obj: Object3D): void;
+    coordsToVector3(coords: [number, number, number?]): Vector3;
+    zoomToAltitude(lat: number, zoom: number): number;
+    altitudeToZoom(lat: number, height: number): number;
+    cameraToVector3AndEuler(pos: CameraOptions): [Vector3, Euler];
+    meterInMercatorUnits(lat: number): number;
+    addDefaultLights(): void;
+    private _zoomToScale;
+    private _scaleToZoom;
+    private _cameraToCenterDistance;
+    private _projectedUnitsPerMeter;
+    private _mercatorScale;
+    private _circumferenceAtLatitude;
+}
