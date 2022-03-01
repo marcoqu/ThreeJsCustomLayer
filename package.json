@@ -17,12 +17,11 @@
     "build": "tsc"
   },
   "dependencies": {
-    "mapbox-gl": "^1.9.0",
-    "three": ">=0.94.0"
+    "mapbox-gl": "^2.7.0",
+    "three": "~0.115.0"
   },
   "devDependencies": {
-    "@types/mapbox-gl": ">=1.8.0",
-    "@types/three": "^0.93.31",
-    "typescript": "^3.8.3"
+    "@types/mapbox-gl": "^2.6.1",
+    "typescript": "^4.4.4"
   }
 }
