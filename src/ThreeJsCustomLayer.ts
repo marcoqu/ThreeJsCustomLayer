@@ -4,7 +4,7 @@ import type { Object3D } from 'three';
 import { MercatorCoordinate } from 'mapbox-gl';
 import { Camera, DirectionalLight, HemisphereLight, Matrix4, Scene, Vector3, WebGLRenderer } from 'three';
 
-export class CustomLayer implements CustomLayerInterface {
+export class ThreeJsCustomLayer implements CustomLayerInterface {
     public id: string;
     public type = 'custom' as const;
     public renderingMode = '3d' as const;
@@ -18,7 +18,7 @@ export class CustomLayer implements CustomLayerInterface {
     private _center?: Required<MercatorCoordinate>;
     private _renderer?: WebGLRenderer;
 
-    public constructor(id: string) {
+    public constructor(id: string = 'threeLayer') {
         this.id = id;
     }
 

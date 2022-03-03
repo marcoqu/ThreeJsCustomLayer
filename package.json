@@ -1,7 +1,7 @@
 {
   "name": "threejs-custom-layer",
-  "version": "0.1.0",
-  "description": "A Mapbox custom layer to add Three.js 3d objects synced with the map view",
+  "version": "1.0.0",
+  "description": "A Mapbox custom layer to add Three.js to a map",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/marcoqu/ThreeJsCustomLayer.git"
@@ -14,14 +14,14 @@
   "main": "dist/ThreeJsCustomLayer.js",
   "types": "dist/ThreeJsCustomLayer.d.ts",
   "scripts": {
-    "build": "tsc"
+    "build": "rd /s /q dist&tsc"
   },
   "dependencies": {
     "mapbox-gl": "^2.7.0",
-    "three": "~0.115.0"
+    "three": "^0.138.2"
   },
   "devDependencies": {
-    "@types/mapbox-gl": "^2.6.1",
-    "typescript": "^4.4.4"
+    "@types/mapbox-gl": "^2.6.2",
+    "typescript": "^4.6.2"
   }
 }
