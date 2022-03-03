@@ -1,32 +1,31 @@
-import { Map, MercatorCoordinate, CameraOptions } from "mapbox-gl";
-import { Scene, Object3D, Vector3, Euler } from "three";
-export declare class ThreeJsCustomLayer {
+import type { Map, CustomLayerInterface, LngLatLike } from 'mapbox-gl';
+import type { Object3D } from 'three';
+export declare class ThreeJsCustomLayer implements CustomLayerInterface {
     id: string;
     type: "custom";
     renderingMode: "3d";
+    private _scene;
     private _camera;
     private _cameraTransform;
-    private _world;
-    private _scene;
-    private _renderer?;
-    private _factor;
+    private _enabled;
     private _map?;
-    get scene(): Scene;
-    constructor(id?: string, factor?: number);
-    onAdd(map: Map, gl: WebGL2RenderingContext): void;
+    private _center?;
+    private _renderer?;
+    constructor(id?: string);
+    onAdd(map: Map, gl: WebGLRenderingContext): void;
     render(gl: WebGLRenderingContext, matrix: number[]): void;
-    addObject3D(obj: Object3D, coords?: MercatorCoordinate): void;
-    removeObject3D(obj: Object3D): void;
-    coordsToVector3(coords: [number, number, number?]): Vector3;
-    zoomToAltitude(lat: number, zoom: number): number;
-    altitudeToZoom(lat: number, height: number): number;
-    cameraToVector3AndEuler(pos: CameraOptions): [Vector3, Euler];
-    meterInMercatorUnits(lat: number): number;
-    addDefaultLights(): void;
-    private _zoomToScale;
-    private _scaleToZoom;
-    private _cameraToCenterDistance;
-    private _projectedUnitsPerMeter;
-    private _mercatorScale;
-    private _circumferenceAtLatitude;
+    /**
+     * @param object ThreeJs object, with coordinates in meters
+     * @param lnglat Coordinates at which to place the object
+     * @param altitude altitude at which to place the object
+     */
+    addObjectAtLocation(object: Object3D, lnglat: LngLatLike, altitude?: number): void;
+    /**
+     * @param object ThreeJs object, with coordinates in Mercator Coordinates
+     */
+    addGeographicObject(object: Object3D): void;
+    enable(): void;
+    disable(): void;
+    remove(obj: Object3D): void;
+    private _setupLights;
 }
